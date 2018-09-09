@@ -25,159 +25,239 @@ import java.util.HashMap;
 
 public class UpdateUser extends AppCompatActivity {
 
-    String ufirstName, ulastName, uusername, upassword,uaddress, ucity,ustate, uprefix, uphoneNumber, ugender, uid, urole;
+        String gender;
 
-    @Override
-    public void onBackPressed() {
+        @Override
+        public void onBackPressed() {
+            Intent goToWelcome = new Intent (UpdateUser.this, welcomeS.class);
 
-        Intent goToWelcome = new Intent (UpdateUser.this, welcomeS.class);
+            goToWelcome.putExtra("firstName", getIntent().getExtras().getString("firstName"));
+            goToWelcome.putExtra("lastName", getIntent().getExtras().getString("lastName"));
+            goToWelcome.putExtra("username",getIntent().getExtras().getString("username"));
+            goToWelcome.putExtra("password", getIntent().getExtras().getString("password"));
+            goToWelcome.putExtra("address",  getIntent().getExtras().getString("address"));
+            goToWelcome.putExtra("city",  getIntent().getExtras().getString("city"));
+            goToWelcome.putExtra("state",getIntent().getExtras().getString("state"));
+            goToWelcome.putExtra("prefix",  getIntent().getExtras().getString("prefix"));
+            goToWelcome.putExtra("phoneNumber",getIntent().getExtras().getString("phoneNumber"));
+            goToWelcome.putExtra("gender", getIntent().getExtras().getString("gender"));
+            goToWelcome.putExtra("id", getIntent().getExtras().getString("id"));
+            goToWelcome.putExtra("role", "1");
 
-        goToWelcome.putExtra("firstName", ufirstName);
-        goToWelcome.putExtra("lastName", ulastName);
-        goToWelcome.putExtra("username", uusername);
-        goToWelcome.putExtra("password", upassword);
-        goToWelcome.putExtra("address", uaddress);
-        goToWelcome.putExtra("city", ucity);
-        goToWelcome.putExtra("state", ustate);
-        goToWelcome.putExtra("prefix", uprefix);
-        goToWelcome.putExtra("phoneNumber", uphoneNumber);
-        goToWelcome.putExtra("gender", ugender);
-        goToWelcome.putExtra("id", getIntent().getExtras().getString("id"));
-        goToWelcome.putExtra("role", "1");
-
-
-        startActivity(goToWelcome);
-
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_user);
-
-
-        final EditText firstName = findViewById(R.id.fname1);
-        firstName.setText(getIntent().getExtras().getString("firstName"));
-        final EditText lastName = findViewById(R.id.sname);
-        lastName.setText(getIntent().getExtras().getString("lastName"));
-        final EditText username = findViewById(R.id.user);
-        username.setText( getIntent().getExtras().getString("username"));
-        final EditText password = findViewById(R.id.pwd);
-        password.setText( getIntent().getExtras().getString("password"));
-        final EditText address = findViewById(R.id.addr);
-        address.setText( getIntent().getExtras().getString("address"));
-        final EditText city = findViewById(R.id.city);
-        city.setText( getIntent().getExtras().getString("city"));
-        final EditText state = findViewById(R.id.state);
-        state.setText( getIntent().getExtras().getString("state"));
-        final EditText prefix = findViewById(R.id.pref);
-        prefix.setText( getIntent().getExtras().getString("prefix"));
-        final EditText telephone = findViewById(R.id.tel);
-        telephone.setText( getIntent().getExtras().getString("phoneNumber"));
-
-        final String gender;
-
-        findViewById(R.id.radioButton8).setClickable(true);
-        findViewById(R.id.radioButton7).setClickable(true);
-        final RadioGroup radioGroup = findViewById(R.id.radiogroup);
-        String valueOfGender = getIntent().getExtras().getString("gender");
-
-        if(valueOfGender.equals("M")) {
-
-            radioGroup.check(R.id.radioButton8);
-            gender = "M";
-        }else if(valueOfGender.equals("F")){
-            radioGroup.check(R.id.radioButton7);
-
-            gender = "F";
+            onNewIntent(goToWelcome);
+            startActivity(goToWelcome);
         }
 
 
-        Button update = findViewById(R.id.register);
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                // Instantiate the RequestQueue.
-                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                String url = "http://carsharingap.000webhostapp.com/server/api/user/update.php";
-
-                String gender1 = null;
-
-                // Request a string response from the provided URL.
-
-                EditText fname = findViewById(R.id.fname1);
-                EditText lname = findViewById(R.id.sname);
-                EditText uname = findViewById(R.id.user);
-                EditText pass = findViewById(R.id.pwd);
-                EditText addr = findViewById(R.id.addr);
-                EditText city = findViewById(R.id.city);
-                EditText state = findViewById(R.id.state);
-                EditText pref = findViewById(R.id.pref);
-                EditText tel = findViewById(R.id.tel);
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_update_user);
 
 
-                HashMap userValues = new HashMap();
-                userValues.put("role", "1");
-                userValues.put("firstName", fname.getText().toString());
-                userValues.put("lastName", lname.getText().toString());
-                userValues.put("username", uname.getText().toString());
-                userValues.put("password", pass.getText().toString());
-                userValues.put("address", addr.getText().toString());
-                userValues.put("city", city.getText().toString());
-                userValues.put("state", state.getText().toString());
-                userValues.put("prefix", pref.getText().toString());
-                userValues.put("phoneNumber", tel.getText().toString());
+            final EditText firstName = findViewById(R.id.fname1);
+            firstName.setText(getIntent().getExtras().getString("firstName"));
+            final EditText lastName = findViewById(R.id.sname);
+            lastName.setText(getIntent().getExtras().getString("lastName"));
+            final EditText username = findViewById(R.id.user);
+            username.setText( getIntent().getExtras().getString("username"));
+            final EditText password = findViewById(R.id.pwd);
+            password.setText( getIntent().getExtras().getString("password"));
+            final EditText address = findViewById(R.id.addr);
+            address.setText( getIntent().getExtras().getString("address"));
+            final EditText city = findViewById(R.id.city);
+            city.setText( getIntent().getExtras().getString("city"));
+            final EditText state = findViewById(R.id.state);
+            state.setText( getIntent().getExtras().getString("state"));
+            final EditText prefix = findViewById(R.id.pref);
+            prefix.setText( getIntent().getExtras().getString("prefix"));
+            final EditText telephone = findViewById(R.id.tel);
+            telephone.setText( getIntent().getExtras().getString("phoneNumber"));
 
-                int radioButtonId = radioGroup.getCheckedRadioButtonId();
-                RadioButton radioButtonSelected = radioGroup.findViewById(radioButtonId);
-                String selectedtext = (String) radioButtonSelected.getText();
-                if(selectedtext.equals("M")) {
-                    gender1 = "M";
-                }else if(selectedtext.equals("F")) {
-                    gender1 = "F";
+
+
+            findViewById(R.id.radioButton8).setClickable(true);
+            findViewById(R.id.radioButton7).setClickable(true);
+            final RadioGroup radioGroup = findViewById(R.id.radiogroup);
+            String valueOfGender = getIntent().getExtras().getString("gender");
+
+            if(valueOfGender.equals("M")) {
+
+                radioGroup.check(R.id.radioButton8);
+                gender = "M";
+            }else if(valueOfGender.equals("F")){
+                radioGroup.check(R.id.radioButton7);
+
+                gender = "F";
+            }
+
+
+            Button update = findViewById(R.id.register);
+            update.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    // Instantiate the RequestQueue.
+                    RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                    String url = "http://carsharingap.000webhostapp.com/server/api/user/update.php";
+
+
+
+                    // Request a string response from the provided URL.
+
+
+                    HashMap userValues = new HashMap();
+                    userValues.put("role", "1");
+                    userValues.put("firstName", firstName.getText().toString());
+                    userValues.put("lastName", lastName.getText().toString());
+                    userValues.put("username", username.getText().toString());
+                    userValues.put("password", password.getText().toString());
+                    userValues.put("address", address.getText().toString());
+                    userValues.put("city", city.getText().toString());
+                    userValues.put("state", state.getText().toString());
+                    userValues.put("prefix", prefix.getText().toString());
+                    userValues.put("phoneNumber", telephone.getText().toString());
+
+                    int radioButtonId = radioGroup.getCheckedRadioButtonId();
+                    RadioButton radioButtonSelected = radioGroup.findViewById(radioButtonId);
+                    String selectedtext = (String) radioButtonSelected.getText();
+                    if(selectedtext.equals("M")) {
+                        gender = "M";
+                    }else if(selectedtext.equals("F")) {
+                        gender = "F";
+                    }
+
+
+                    userValues.put("gender",gender);
+                    userValues.put("id",getIntent().getExtras().getString("id"));
+
+
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                            (Request.Method.POST, url, new JSONObject(userValues),
+                                    new Response.Listener<JSONObject>() {
+                                        @Override
+                                        public void onResponse(JSONObject response) {
+                                            // Display the first 500 characters of the response string.
+                                            //mTextView.setText("Response is: "+ response.toString());
+                                            Toast.makeText(getApplicationContext(), "update completed", Toast.LENGTH_LONG).show();
+
+                                        }
+                                    }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                    // Add the request to the RequestQueue.
+                    MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonObjectRequest);
+
+                    Intent goToWelcome = new Intent (UpdateUser.this, welcomeS.class);
+
+                    goToWelcome.putExtra("firstName", firstName.getText().toString());
+                    goToWelcome.putExtra("lastName", lastName.getText().toString());
+                    goToWelcome.putExtra("username",  username.getText().toString());
+                    goToWelcome.putExtra("password",  password.getText().toString());
+                    goToWelcome.putExtra("address",  address.getText().toString());
+                    goToWelcome.putExtra("city",  city.getText().toString());
+                    goToWelcome.putExtra("state",  state.getText().toString());
+                    goToWelcome.putExtra("prefix",  prefix.getText().toString());
+                    goToWelcome.putExtra("phoneNumber",telephone.getText().toString());
+                    goToWelcome.putExtra("gender", gender);
+                    goToWelcome.putExtra("id", getIntent().getExtras().getString("id"));
+                    goToWelcome.putExtra("role", "1");
+
+                    onNewIntent(goToWelcome);
+                    startActivity(goToWelcome);
                 }
 
 
-                userValues.put("gender",gender1);
-                userValues.put("id",getIntent().getExtras().getString("id"));
 
-                ufirstName = fname.getText().toString();
-                ulastName = lname.getText().toString();
-                uusername = uname.getText().toString();
-                upassword =  pass.getText().toString();
-                uaddress = addr.getText().toString();
-                ucity =  city.getText().toString();
-                ustate = state.getText().toString();
-                uprefix =  pref.getText().toString();
-                uphoneNumber = tel.getText().toString();
-                ugender = gender1;
-                uid = getIntent().getExtras().getString("id");
-                urole = getIntent().getExtras().getString("role");
+     /*   // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        String url = "http://carsharingap.000webhostapp.com/server/api/user/update.php";
 
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                        (Request.Method.POST, url, new JSONObject(userValues),
-                                new Response.Listener<JSONObject>() {
-                                    @Override
-                                    public void onResponse(JSONObject response) {
-                                        // Display the first 500 characters of the response string.
-                                        //mTextView.setText("Response is: "+ response.toString());
-                                        Toast.makeText(getApplicationContext(), "update completed", Toast.LENGTH_LONG).show();
+        // Controlli form
 
+        String firstName = ((TextView)findViewById(R.id.fname1)).getText().toString();
+        String lastName = ((TextView)findViewById(R.id.)).getText().toString();
+        String password = textViewPassword.getText().toString();
+        if (username.isEmpty() || password.isEmpty()) {
+            String error = "";
+            if (username.isEmpty()) error = error + " username ";
+            if (password.isEmpty()) error = error + " password ";
+            error = error + "not entered";
+            Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
+        }
+        else {
+            // Request a string response from the provided URL.
+
+            HashMap loginValues = new HashMap();
+            loginValues.put("role", "0");
+            loginValues.put("username", textViewUser.getText().toString());
+            loginValues.put("password", textViewPassword.getText().toString());
+
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                    (Request.Method.POST, url, new JSONObject(loginValues),
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    // Display the first 500 characters of the response string.
+                                    //mTextView.setText("Response is: "+ response.toString());
+                                    try {
+                                        if (response.isNull("id"))
+                                            mTextView.setText("USER DOES NOT EXIST");
+                                        else {
+
+                                            mTextView.setText("ciao " + response.getString("firstName"));
+
+                                            Intent intent = new Intent(getContext(), welcomeL.class);
+
+                                            intent.putExtra("firstName",response.getString("firstName"));
+                                            intent.putExtra("lastName",response.getString("lastName"));
+                                            intent.putExtra("username", response.getString("username"));
+                                            intent.putExtra("password",response.getString("password"));
+                                            intent.putExtra("address",response.getString("address"));
+                                            intent.putExtra("city",response.getString("city"));
+                                            intent.putExtra("state",response.getString("state"));
+
+                                            if(response.getString("gender")=="M")
+                                                intent.putExtra("gender","M");
+                                            else
+                                                intent.putExtra("gender","F");
+
+                                            intent.putExtra("prefix",response.getString("prefix"));
+                                            intent.putExtra("phoneNumber",response.getString("phoneNumber"));
+
+                                            startActivity(intent);
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
                                     }
-                                }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
-                            }
-                        });
-                // Add the request to the RequestQueue.
-                MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonObjectRequest);
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            mTextView.setText("That didn't work!");
+                        }
+                    });
+
+            // Add the request to the RequestQueue.
+            MySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(jsonObjectRequest);
+
+        }
+}
+*/
+            });
 
 
-            }
+        }
+        @Override
+        protected void onNewIntent(final Intent intent) {
+            super.onNewIntent(intent);
+            this.setIntent(intent);
+        }
 
-        });
 
 
-    }}
+
+    }

@@ -1,5 +1,6 @@
 package com.example.luisa.esharingreservedarea;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -90,6 +91,7 @@ public class NewLocation extends AppCompatActivity {
         // Add the request to the RequestQueue.
         MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonObjectRequest);
 
+
     }
 
         @Override
@@ -108,5 +110,11 @@ public class NewLocation extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onNewIntent(final Intent intent) {
+        super.onNewIntent(intent);
+        this.setIntent(intent);
     }
 }
