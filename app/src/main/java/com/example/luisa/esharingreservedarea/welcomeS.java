@@ -145,8 +145,10 @@ public class welcomeS extends AppCompatActivity {
 
             }
         });
-/*
-        findViewById(R.id.order).setOnClickListener(new View.OnClickListener() {
+
+
+
+  /*      findViewById(R.id.order).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent readOrderIntent = new Intent(welcomeS.this, ReadOrder.class);
@@ -177,6 +179,8 @@ public class welcomeS extends AppCompatActivity {
             }
         });
 */
+
+
         findViewById(R.id.logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

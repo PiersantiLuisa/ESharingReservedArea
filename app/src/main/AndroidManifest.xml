@@ -26,7 +26,7 @@
         <activity android:name=".NewCar" />
         <activity android:name=".NewLocation" />
         <activity android:name=".SeeCars" />
-        <activity android:name=".SeeLocations"></activity>
+        <activity android:name=".SeeLocations" />
     </application>
 
 </manifest>
