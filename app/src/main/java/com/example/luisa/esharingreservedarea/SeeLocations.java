@@ -2,8 +2,13 @@ package com.example.luisa.esharingreservedarea;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -28,6 +33,7 @@ public class SeeLocations extends AppCompatActivity {
     private HashMap<String,List<String>> listDataChild;
     private ExpandableListView listView;
     private CustomExpandableListView customExpandableListView;
+    String idUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +46,7 @@ public class SeeLocations extends AppCompatActivity {
         String url = "http://carsharingap.000webhostapp.com/server/api/basement/read.php";
 
         //HashMap readOrder = new HashMap();
-        final String idUser = getIntent().getExtras().getString("id");
+        idUser = getIntent().getExtras().getString("id");
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.POST, url, null,
@@ -86,7 +92,7 @@ public class SeeLocations extends AppCompatActivity {
 
                                 customExpandableListView = new CustomExpandableListView(SeeLocations.this,listDataHeader,listDataChild);
                                 listView.setAdapter(customExpandableListView);
-
+                                registerForContextMenu(listView);
                             }
 
 
@@ -103,4 +109,58 @@ public class SeeLocations extends AppCompatActivity {
     }
 
 
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        menu.setHeaderTitle("SELECT OPTION");
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_context_menu1, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        ExpandableListView.ExpandableListContextMenuInfo info = (ExpandableListView.ExpandableListContextMenuInfo) item.getMenuInfo();
+        String idlocation = customExpandableListView.deleteGroupLocation((int)info.id);
+        customExpandableListView.notifyDataSetChanged();
+
+        //TODO - Aggiungere la chiamata alla API per rimuovere l'elemento online, per tutti gli altri basta che fai come qui'
+        //era sbagliato il tipo di info e crasciava per quello.
+        //ho creato la nuova funzione deleteGroup in CustomExpandableListView per rimuovere prima il child e poi il titolo.
+
+
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        String url = "http://carsharingap.000webhostapp.com/server/api/basement/delete.php";
+
+        HashMap deleteValues = new HashMap();
+        deleteValues.put("seller", idUser);
+        deleteValues.put("id", idlocation);
+
+
+        // Request a string response from the provided URL.
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.POST, url, new JSONObject(deleteValues),
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                // Display the first 500 characters of the response string.
+                                //mTextView.setText("Response is: "+ response.toString());
+                                Toast.makeText(getApplicationContext(), "delete completed", Toast.LENGTH_LONG).show();
+
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
+                    }
+                });
+        // Add the request to the RequestQueue.
+        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonObjectRequest);
+
+
+
+        return true;
+    }
 }

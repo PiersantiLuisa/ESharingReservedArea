@@ -1,22 +1,25 @@
 package com.example.luisa.esharingreservedarea;
 
-        import android.content.Context;
-        import android.database.DataSetObservable;
-        import android.graphics.Typeface;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.BaseExpandableListAdapter;
-        import android.widget.TextView;
+import android.content.Context;
+import android.database.DataSetObservable;
+import android.graphics.Typeface;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseExpandableListAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import java.util.HashMap;
-        import java.util.List;
+import java.util.HashMap;
+import java.util.List;
 
 public class CustomExpandableListView extends BaseExpandableListAdapter {
 
     Context context;
     List<String> listHeader;
     HashMap<String, List<String>> listChild;
+
 
     public CustomExpandableListView(Context context, List<String> listHeader, HashMap<String, List<String>> listChild) {
         this.context = context;
@@ -82,5 +85,30 @@ public class CustomExpandableListView extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
+    }
+
+
+    public String deleteGroupCar(int groupPosition){
+
+        String idcar=  (listHeader.get(groupPosition)).toString().substring(8);
+
+        listChild.remove(listHeader.get(groupPosition));
+
+
+        listHeader.remove(groupPosition);
+        return idcar;
+
+    }
+
+    public String deleteGroupLocation(int groupPosition){
+
+        String idlocation=  (listHeader.get(groupPosition)).toString().substring(13);
+
+        listChild.remove(listHeader.get(groupPosition));
+
+
+        listHeader.remove(groupPosition);
+        return idlocation;
+
     }
 }
