@@ -123,8 +123,9 @@ public class SeeCars extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        ExpandableListView.ExpandableListContextMenuInfo info = (ExpandableListView.ExpandableListContextMenuInfo) item.getMenuInfo();
-        String idcar = customExpandableListView.deleteGroupCar((int)info.id);
+        ExpandableListView.ExpandableListContextMenuInfo info = (ExpandableListView.ExpandableListContextMenuInfo) item.getMenuInfo();      //salvare l'item della lista che ho preso 
+        String idcar=  (listDataHeader.get((int)info.id)).toString().substring(8);
+        customExpandableListView.deleteGroup((int)info.id);
         customExpandableListView.notifyDataSetChanged();
 
         //TODO - Aggiungere la chiamata alla API per rimuovere l'elemento online, per tutti gli altri basta che fai come qui'

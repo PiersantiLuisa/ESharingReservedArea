@@ -121,7 +121,8 @@ public class SeeLocations extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         ExpandableListView.ExpandableListContextMenuInfo info = (ExpandableListView.ExpandableListContextMenuInfo) item.getMenuInfo();
-        String idlocation = customExpandableListView.deleteGroupLocation((int)info.id);
+        String idlocation=  (listDataHeader.get((int)info.id)).toString().substring(13);
+        customExpandableListView.deleteGroup((int)info.id);
         customExpandableListView.notifyDataSetChanged();
 
         //TODO - Aggiungere la chiamata alla API per rimuovere l'elemento online, per tutti gli altri basta che fai come qui'

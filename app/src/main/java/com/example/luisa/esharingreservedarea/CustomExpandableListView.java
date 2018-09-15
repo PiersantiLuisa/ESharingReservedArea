@@ -88,27 +88,17 @@ public class CustomExpandableListView extends BaseExpandableListAdapter {
     }
 
 
-    public String deleteGroupCar(int groupPosition){
-
-        String idcar=  (listHeader.get(groupPosition)).toString().substring(8);
-
-        listChild.remove(listHeader.get(groupPosition));
+    public void deleteGroup(int groupPosition){
 
 
-        listHeader.remove(groupPosition);
-        return idcar;
-
-    }
-
-    public String deleteGroupLocation(int groupPosition){
-
-        String idlocation=  (listHeader.get(groupPosition)).toString().substring(13);
 
         listChild.remove(listHeader.get(groupPosition));
 
 
         listHeader.remove(groupPosition);
-        return idlocation;
+
 
     }
+
+
 }
