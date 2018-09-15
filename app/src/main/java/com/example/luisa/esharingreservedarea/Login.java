@@ -113,12 +113,7 @@ public class Login extends Fragment {
                                                     intent.putExtra("address",response.getString("address"));
                                                     intent.putExtra("city",response.getString("city"));
                                                     intent.putExtra("state",response.getString("state"));
-
-                                                    if(response.getString("gender")=="M")
-                                                        intent.putExtra("gender","M");
-                                                    else
-                                                        intent.putExtra("gender","F");
-
+                                                    intent.putExtra("gender",response.getString("gender"));
                                                     intent.putExtra("prefix",response.getString("prefix"));
                                                     intent.putExtra("phoneNumber",response.getString("phoneNumber"));
                                                     intent.putExtra("id",response.getString("id"));
