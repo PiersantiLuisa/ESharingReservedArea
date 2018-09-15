@@ -119,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Password"
-                android:inputType="textPassword" />
+                />
 
             <TextView
                 android:id="@+id/textView5"
