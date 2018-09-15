@@ -199,7 +199,10 @@ public class welcomeS extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
 
+    }
 
 }
 

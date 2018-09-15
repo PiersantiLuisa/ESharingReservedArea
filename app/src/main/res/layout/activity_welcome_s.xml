@@ -22,24 +22,6 @@
 
 
             <Button
-                android:id="@+id/button2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="UPDATE USER" />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="DELETE USER" />
-
-            <Button
-                android:id="@+id/logout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="LOG OUT" />
-
-            <Button
                 android:id="@+id/seecar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,12 +32,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ADD CAR" />
-
-            <Button
-                android:id="@+id/deletecar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="DELETE CAR" />
 
             <Button
                 android:id="@+id/seelocation"
@@ -70,17 +46,22 @@
                 android:text="ADD LOCATION" />
 
             <Button
-                android:id="@+id/deletelocation"
+                android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="DELETE LOCATION" />
+                android:text="UPDATE USER" />
+
+            <Button
+                android:id="@+id/logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="LOG OUT" />
 
             <TextView
                 android:id="@+id/fname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="First Name"
-                android:textAlignment="viewStart"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
