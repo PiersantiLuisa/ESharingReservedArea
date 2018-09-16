@@ -89,7 +89,8 @@ public class NewLocation extends AppCompatActivity {
         // Add the request to the RequestQueue.
         MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonObjectRequest);
 
-
+name.getText().clear();
+address.getText().clear();
     }
 
         @Override

@@ -231,6 +231,11 @@ public class NewCar extends AppCompatActivity {
         // Add the request to the RequestQueue.
         MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonObjectRequest1);
 
+
+        plate.getText().clear();
+        model.getText().clear();
+        maxspeed.getText().clear();
+        nopass.getText().clear();
     }
 
 
@@ -251,7 +256,6 @@ public class NewCar extends AppCompatActivity {
                 controlForm();
             }
         });
-
 
 
 
