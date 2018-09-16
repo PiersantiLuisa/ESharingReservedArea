@@ -33,6 +33,7 @@ public class Registration extends Fragment {
     Button registration = null;
     TextView mTextView = null;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

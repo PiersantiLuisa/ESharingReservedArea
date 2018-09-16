@@ -39,13 +39,13 @@ public class SeeLocations extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_see_cars);
-        //  final TextView textView = findViewById(R.id.textView19);
+
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         String url = "http://carsharingap.000webhostapp.com/server/api/basement/read.php";
 
-        //HashMap readOrder = new HashMap();
+
         idUser = getIntent().getExtras().getString("id");
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
@@ -99,7 +99,7 @@ public class SeeLocations extends AppCompatActivity {
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //    textView.setText("That didn't work!");
+                        Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
                     }
                 });
         // Add the request to the RequestQueue.
@@ -124,10 +124,6 @@ public class SeeLocations extends AppCompatActivity {
         String idlocation=  (listDataHeader.get((int)info.id)).toString().substring(13);
         customExpandableListView.deleteGroup((int)info.id);
         customExpandableListView.notifyDataSetChanged();
-
-        //TODO - Aggiungere la chiamata alla API per rimuovere l'elemento online, per tutti gli altri basta che fai come qui'
-        //era sbagliato il tipo di info e crasciava per quello.
-        //ho creato la nuova funzione deleteGroup in CustomExpandableListView per rimuovere prima il child e poi il titolo.
 
 
         // Instantiate the RequestQueue.

@@ -19,34 +19,35 @@ import org.w3c.dom.Text;
 
 public class welcomeS extends AppCompatActivity {
 
+    String sfname,ssname,suname,spass,saddr,scity,sstate,gender1,spref,stel,sid,srole;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_s);
 
         TextView firstName = findViewById(R.id.fname1);
-        final String sfname = getIntent().getExtras().getString("firstName");
+        sfname = getIntent().getExtras().getString("firstName");
         firstName.setText(sfname);
         TextView lastName = findViewById(R.id.sname);
-        final String ssname = getIntent().getExtras().getString("lastName");
+        ssname = getIntent().getExtras().getString("lastName");
         lastName.setText(ssname);
         TextView username = findViewById(R.id.user);
-        final String suname = getIntent().getExtras().getString("username");
+        suname = getIntent().getExtras().getString("username");
         username.setText(suname);
         TextView password = findViewById(R.id.pwd);
-        final String spass = getIntent().getExtras().getString("password");
+        spass = getIntent().getExtras().getString("password");
         password.setText(spass);
         TextView address = findViewById(R.id.addr);
-        final String saddr = getIntent().getExtras().getString("address");
+        saddr = getIntent().getExtras().getString("address");
         address.setText(saddr);
         TextView city = findViewById(R.id.city);
-        final String scity = getIntent().getExtras().getString("city");
+        scity = getIntent().getExtras().getString("city");
         city.setText(scity);
         TextView state = findViewById(R.id.state);
-        final String sstate = getIntent().getExtras().getString("state");
+        sstate = getIntent().getExtras().getString("state");
         state.setText(sstate);
 
-        final String gender1;
         String gender = null;
 
         RadioGroup radioGroup = findViewById(R.id.radiogroup);
@@ -72,13 +73,13 @@ public class welcomeS extends AppCompatActivity {
         gender1 = gender;
 
         TextView prefix = findViewById(R.id.pref);
-        final String spref = getIntent().getExtras().getString("prefix");
+        spref = getIntent().getExtras().getString("prefix");
         prefix.setText(spref);
         TextView telephone = findViewById(R.id.tel);
-        final String stel = getIntent().getExtras().getString("phoneNumber");
+        stel = getIntent().getExtras().getString("phoneNumber");
         telephone.setText(stel);
-        final String sid = getIntent().getExtras().getString("id");
-        final String srole = getIntent().getExtras().getString("role");
+        sid = getIntent().getExtras().getString("id");
+        srole = getIntent().getExtras().getString("role");
 
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,44 +149,10 @@ public class welcomeS extends AppCompatActivity {
 
 
 
-  /*      findViewById(R.id.order).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent readOrderIntent = new Intent(welcomeS.this, ReadOrder.class);
-
-                readOrderIntent.putExtra("firstName",sfname);
-                readOrderIntent.putExtra("lastName",ssname);
-                readOrderIntent.putExtra("username",suname);
-                readOrderIntent.putExtra("password",spass);
-                readOrderIntent.putExtra("address",saddr);
-                readOrderIntent.putExtra("city",scity);
-                readOrderIntent.putExtra("state",sstate);
-                readOrderIntent.putExtra("prefix",spref);
-                readOrderIntent.putExtra("phoneNumber",stel);
-                readOrderIntent.putExtra("gender",gender1);
-                readOrderIntent.putExtra("id",sid);
-
-                startActivity(readOrderIntent);
-            }
-        });
-
-        findViewById(R.id.new_order).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent newOrderIntent = new Intent(welcomeS.this, NewOrder.class);
-
-                newOrderIntent.putExtra("id",sid);
-                startActivity(newOrderIntent);
-            }
-        });
-*/
-
-
         findViewById(R.id.logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent goToMain = new Intent(welcomeS.this, MainActivity.class);
-           //     startActivity(goToMain);
 
                 goToMain.putExtra("finish", true); // if you are checking for this in your other Activities
                 goToMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |

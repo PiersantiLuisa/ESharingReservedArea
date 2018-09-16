@@ -41,7 +41,7 @@ public class Login extends Fragment {
 
     Button login = null;
     View inflatedView = null;
-
+    TextView textViewUser,textViewPassword,mTextView;
 
     @Nullable
     @Override
@@ -53,15 +53,15 @@ public class Login extends Fragment {
 
         
 
-        final TextView textViewUser = (TextView) inflatedView.findViewById(R.id.user);
-        final TextView textViewPassword = (TextView) inflatedView.findViewById(R.id.password);
+        textViewUser = (TextView) inflatedView.findViewById(R.id.user);
+        textViewPassword = (TextView) inflatedView.findViewById(R.id.password);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
-                final TextView mTextView = (TextView) inflatedView.findViewById(R.id.text);
+                mTextView = (TextView) inflatedView.findViewById(R.id.text);
 
 
                 // Instantiate the RequestQueue.

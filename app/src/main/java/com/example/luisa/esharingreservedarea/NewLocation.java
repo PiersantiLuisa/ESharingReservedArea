@@ -25,11 +25,9 @@ public class NewLocation extends AppCompatActivity {
     Button addlocation;
     EditText name,address;
     String sname, saddress,seller;
-    TextView t;
+
 
     public void controlForm(){
-
-        TextView test = findViewById(R.id.test);
 
         name = findViewById(R.id.name);
         address = findViewById(R.id.address);
@@ -78,7 +76,7 @@ public class NewLocation extends AppCompatActivity {
                             public void onResponse(JSONObject response) {
                                 // Display the first 500 characters of the response string.
                                 //mTextView.setText("Response is: "+ response.toString());
-
+                                Toast.makeText(getApplicationContext(), "Location created", Toast.LENGTH_LONG).show();
 
                             }
                         }, new Response.ErrorListener() {
@@ -112,9 +110,4 @@ public class NewLocation extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onNewIntent(final Intent intent) {
-        super.onNewIntent(intent);
-        this.setIntent(intent);
-    }
 }

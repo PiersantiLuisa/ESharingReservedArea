@@ -117,7 +117,6 @@ public class NewCar extends AppCompatActivity {
 
     public void controlForm(){
 
-        TextView test = findViewById(R.id.test);
 
         plate = findViewById(R.id.plate);
         model = findViewById(R.id.model);
@@ -129,7 +128,6 @@ public class NewCar extends AppCompatActivity {
         smaxspeed = maxspeed.getText().toString();
         snopass = nopass.getText().toString();
 
-        test.setText(smodel.concat(splate).concat(smaxspeed).concat(snopass).concat(idBaseChosen));
 
         if(splate.isEmpty() || smodel.isEmpty() || smaxspeed.isEmpty() || snopass.isEmpty()){
             String error = "";
@@ -191,7 +189,6 @@ public class NewCar extends AppCompatActivity {
         MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonObjectRequest);
 
 
-
         // Instantiate the RequestQueue.
         RequestQueue queue1 = Volley.newRequestQueue(getApplicationContext());
         String url1 = "http://carsharingap.000webhostapp.com/server/api/history/create.php";
@@ -204,18 +201,18 @@ public class NewCar extends AppCompatActivity {
 
         HashMap newHistoryValues = new HashMap();
         newHistoryValues.put("idCar", splate);
-        newHistoryValues.put("model", smodel);
-        newHistoryValues.put("maxSpeed", smaxspeed);
-        newHistoryValues.put("numberOfPassengers", snopass);
-        newHistoryValues.put("customer", seller);
-        newHistoryValues.put("seller", seller);
+
+
+        newHistoryValues.put("user", seller);
         newHistoryValues.put("idBasementStart", idBaseChosen);
         newHistoryValues.put("idBasementEnd", idBaseChosen);
         newHistoryValues.put("pickUpDay", dateFormat.format(date));
         newHistoryValues.put("deliveryDay", dateFormat.format(date));
 
+
+
         JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest
-                (Request.Method.POST, url, new JSONObject(newCarValues),
+                (Request.Method.POST, url1, new JSONObject(newHistoryValues),
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
@@ -232,7 +229,8 @@ public class NewCar extends AppCompatActivity {
                 });
 
         // Add the request to the RequestQueue.
-        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonObjectRequest);
+        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonObjectRequest1);
+
     }
 
 
@@ -256,9 +254,5 @@ public class NewCar extends AppCompatActivity {
 
 
 
- /*       setSpinner();
-        onSpinnerItemSelected();
-        addCar();
-        addOrder();
-  */
+
     }}

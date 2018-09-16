@@ -26,6 +26,7 @@ import java.util.HashMap;
 public class UpdateUser extends AppCompatActivity {
 
         String gender;
+        EditText firstName,lastName,username,password,address,city,state,prefix,telephone;
 
         @Override
         public void onBackPressed() {
@@ -55,23 +56,23 @@ public class UpdateUser extends AppCompatActivity {
             setContentView(R.layout.activity_update_user);
 
 
-            final EditText firstName = findViewById(R.id.fname1);
+            firstName = findViewById(R.id.fname1);
             firstName.setText(getIntent().getExtras().getString("firstName"));
-            final EditText lastName = findViewById(R.id.sname);
+            lastName = findViewById(R.id.sname);
             lastName.setText(getIntent().getExtras().getString("lastName"));
-            final EditText username = findViewById(R.id.user);
+            username = findViewById(R.id.user);
             username.setText( getIntent().getExtras().getString("username"));
-            final EditText password = findViewById(R.id.pwd);
+            password = findViewById(R.id.pwd);
             password.setText( getIntent().getExtras().getString("password"));
-            final EditText address = findViewById(R.id.addr);
+            address = findViewById(R.id.addr);
             address.setText( getIntent().getExtras().getString("address"));
-            final EditText city = findViewById(R.id.city);
+            city = findViewById(R.id.city);
             city.setText( getIntent().getExtras().getString("city"));
-            final EditText state = findViewById(R.id.state);
+            state = findViewById(R.id.state);
             state.setText( getIntent().getExtras().getString("state"));
-            final EditText prefix = findViewById(R.id.pref);
+            prefix = findViewById(R.id.pref);
             prefix.setText( getIntent().getExtras().getString("prefix"));
-            final EditText telephone = findViewById(R.id.tel);
+            telephone = findViewById(R.id.tel);
             telephone.setText( getIntent().getExtras().getString("phoneNumber"));
 
 
