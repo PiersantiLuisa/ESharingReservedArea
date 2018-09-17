@@ -143,7 +143,7 @@ public class NewCar extends AppCompatActivity {
         }
 
         else {
-            Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_LONG).show();
+
             sendDatas();
 
         }
@@ -157,6 +157,9 @@ public class NewCar extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         String url = "http://carsharingap.000webhostapp.com/server/api/car/create.php";
 
+        DateFormat dateFormat = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+        Date date  = new Date();
+
 
         // Request a string response from the provided URL.
 
@@ -166,6 +169,10 @@ public class NewCar extends AppCompatActivity {
         newCarValues.put("maxSpeed", smaxspeed);
         newCarValues.put("numberOfPassengers", snopass);
         newCarValues.put("seller", seller);
+        newCarValues.put("idBasementStart", idBaseChosen);
+        newCarValues.put("idBasementEnd", idBaseChosen);
+        newCarValues.put("pickUpDay", dateFormat.format(date));
+        newCarValues.put("deliveryDay", dateFormat.format(date));
 
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
@@ -176,7 +183,7 @@ public class NewCar extends AppCompatActivity {
                                 // Display the first 500 characters of the response string.
                                 //mTextView.setText("Response is: "+ response.toString());
 
-
+                                Toast.makeText(getApplicationContext(), "car created", Toast.LENGTH_LONG).show();
                             }
                         }, new Response.ErrorListener() {
                     @Override
@@ -190,27 +197,18 @@ public class NewCar extends AppCompatActivity {
 
 
         // Instantiate the RequestQueue.
-        RequestQueue queue1 = Volley.newRequestQueue(getApplicationContext());
+  /*      RequestQueue queue1 = Volley.newRequestQueue(getApplicationContext());
         String url1 = "http://carsharingap.000webhostapp.com/server/api/history/create.php";
-
         DateFormat dateFormat = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
         Date date  = new Date();
-
-
         // Request a string response from the provided URL.
-
         HashMap newHistoryValues = new HashMap();
         newHistoryValues.put("idCar", splate);
-
-
         newHistoryValues.put("user", seller);
         newHistoryValues.put("idBasementStart", idBaseChosen);
         newHistoryValues.put("idBasementEnd", idBaseChosen);
         newHistoryValues.put("pickUpDay", dateFormat.format(date));
         newHistoryValues.put("deliveryDay", dateFormat.format(date));
-
-
-
         JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest
                 (Request.Method.POST, url1, new JSONObject(newHistoryValues),
                         new Response.Listener<JSONObject>() {
@@ -218,8 +216,6 @@ public class NewCar extends AppCompatActivity {
                             public void onResponse(JSONObject response) {
                                 // Display the first 500 characters of the response string.
                                 //mTextView.setText("Response is: "+ response.toString());
-
-
                             }
                         }, new Response.ErrorListener() {
                     @Override
@@ -227,10 +223,9 @@ public class NewCar extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
                     }
                 });
-
         // Add the request to the RequestQueue.
         MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonObjectRequest1);
-
+*/
 
         plate.getText().clear();
         model.getText().clear();
