@@ -58,7 +58,7 @@ public class NewLocation extends AppCompatActivity {
 
 
         // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+      //  RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         String url = "http://carsharingap.000webhostapp.com/server/api/basement/create.php";
 
 
