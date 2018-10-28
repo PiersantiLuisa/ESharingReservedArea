@@ -48,7 +48,7 @@ public class NewCar extends AppCompatActivity {
         spinner = findViewById(R.id.spinner5);
 
         // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+      //  RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         String url = "http://carsharingap.000webhostapp.com/server/api/basement/read.php";
 
 
@@ -154,7 +154,7 @@ public class NewCar extends AppCompatActivity {
 
 
         // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+     //   RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         String url = "http://carsharingap.000webhostapp.com/server/api/car/create.php";
 
         DateFormat dateFormat = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
