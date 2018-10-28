@@ -99,7 +99,7 @@ public class UpdateUser extends AppCompatActivity {
                 public void onClick(View view) {
 
                     // Instantiate the RequestQueue.
-                    RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                  //  RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                     String url = "http://carsharingap.000webhostapp.com/server/api/user/update.php";
 
 
