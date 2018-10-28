@@ -42,7 +42,7 @@ public class SeeCars extends AppCompatActivity {
 
 
         // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+      //  RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         String url = "http://carsharingap.000webhostapp.com/server/api/car/read.php";
 
 
@@ -54,51 +54,52 @@ public class SeeCars extends AppCompatActivity {
                             @Override
                             public void onResponse(JSONObject response) {
 
-
-                                listView = (ExpandableListView)findViewById(R.id.expandableListView);
-                                try {
-                                    JSONArray cars = response.getJSONArray("cars");
-                                    listDataHeader = new ArrayList<String>();
-                                    listDataChild =new HashMap();
-
-
-                                    for(int i=0; i < cars.length(); i++){
+                                if (!(response.toString().equals("{\"message\":\"no cars found\"}"))) {
+                                    listView = (ExpandableListView) findViewById(R.id.expandableListView);
+                                    try {
+                                        JSONArray cars = response.getJSONArray("cars");
+                                        listDataHeader = new ArrayList<String>();
+                                        listDataChild = new HashMap();
 
 
-                                        JSONObject car = cars.getJSONObject(i);
-                                        String seller = car.getString("seller");
+                                        for (int i = 0; i < cars.length(); i++) {
 
 
-                                        if(Integer.parseInt(seller)==Integer.parseInt(idUser)) {
-                                            String id = car.getString("id");
-                                            String model = car.getString("model");
-                                            String maxSpeed = car.getString("maxSpeed");
-                                            String numberOfPassengers = car.getString("numberOfPassengers");
+                                            JSONObject car = cars.getJSONObject(i);
+                                            String seller = car.getString("seller");
 
-                                            String carNo = "Car no. " + id;
-                                            listDataHeader.add(carNo);
 
-                                            ArrayList<String> listdetails = new ArrayList<>();
-                                            listdetails.add("plate: "+id);
-                                            listdetails.add("model: "+model);
-                                            listdetails.add("maximum speed: "+maxSpeed);
-                                            listdetails.add("number of passengers: "+numberOfPassengers);
+                                            if (Integer.parseInt(seller) == Integer.parseInt(idUser)) {
+                                                String id = car.getString("id");
+                                                String model = car.getString("model");
+                                                String maxSpeed = car.getString("maxSpeed");
+                                                String numberOfPassengers = car.getString("numberOfPassengers");
 
-                                            listDataChild.put(carNo, listdetails);
+                                                String carNo = "Car no. " + id;
+                                                listDataHeader.add(carNo);
+
+                                                ArrayList<String> listdetails = new ArrayList<>();
+                                                listdetails.add("plate: " + id);
+                                                listdetails.add("model: " + model);
+                                                listdetails.add("maximum speed: " + maxSpeed);
+                                                listdetails.add("number of passengers: " + numberOfPassengers);
+
+                                                listDataChild.put(carNo, listdetails);
+                                            }
+
                                         }
 
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
                                     }
 
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    customExpandableListView = new CustomExpandableListView(SeeCars.this, listDataHeader, listDataChild);
+                                    listView.setAdapter(customExpandableListView);
+                                    registerForContextMenu(listView);
+
+
                                 }
-
-                                customExpandableListView = new CustomExpandableListView(SeeCars.this,listDataHeader,listDataChild);
-                                listView.setAdapter(customExpandableListView);
-                                registerForContextMenu(listView);
-
                             }
-
 
                         }, new Response.ErrorListener() {
                     @Override
@@ -129,7 +130,7 @@ public class SeeCars extends AppCompatActivity {
         customExpandableListView.notifyDataSetChanged();
 
         // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+     //   RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         String url = "http://carsharingap.000webhostapp.com/server/api/car/delete.php";
 
         HashMap deleteValues = new HashMap();
