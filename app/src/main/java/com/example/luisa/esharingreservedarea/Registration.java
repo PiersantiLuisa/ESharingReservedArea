@@ -95,7 +95,7 @@ public class Registration extends Fragment {
                 else{
 
                     // Instantiate the RequestQueue.
-                    RequestQueue queue = Volley.newRequestQueue(getContext());
+                  //  RequestQueue queue = Volley.newRequestQueue(getContext());
                     String url ="http://carsharingap.000webhostapp.com/server/api/user/create.php";
 
                     // Request a string response from the provided URL.
