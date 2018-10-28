@@ -42,7 +42,7 @@ public class SeeLocations extends AppCompatActivity {
 
 
         // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+      //  RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         String url = "http://carsharingap.000webhostapp.com/server/api/basement/read.php";
 
 
@@ -54,47 +54,47 @@ public class SeeLocations extends AppCompatActivity {
                             @Override
                             public void onResponse(JSONObject response) {
 
-
-                                listView = (ExpandableListView)findViewById(R.id.expandableListView);
-                                try {
-                                    JSONArray basements = response.getJSONArray("basements");
-                                    listDataHeader = new ArrayList<String>();
-                                    listDataChild =new HashMap();
-
-
-                                    for(int i=0; i < basements.length(); i++){
-
-                                        //textView.setText(textView.getText()+"---"+(histories.getJSONObject(i).toString()));
-                                        JSONObject basement = basements.getJSONObject(i);
-                                        String seller = basement.getString("seller");
+                                if (!(response.toString().equals("{\"message\":\"no basement found\"}"))) {
+                                    listView = (ExpandableListView) findViewById(R.id.expandableListView);
+                                    try {
+                                        JSONArray basements = response.getJSONArray("basements");
+                                        listDataHeader = new ArrayList<String>();
+                                        listDataChild = new HashMap();
 
 
-                                        if(Integer.parseInt(seller)==Integer.parseInt(idUser)) {
-                                            String id = basement.getString("id");
-                                            String name = basement.getString("name");
-                                            String address = basement.getString("address");
+                                        for (int i = 0; i < basements.length(); i++) {
 
-                                            String locationNo = "Location no. " + id;
-                                            listDataHeader.add(locationNo);
+                                            //textView.setText(textView.getText()+"---"+(histories.getJSONObject(i).toString()));
+                                            JSONObject basement = basements.getJSONObject(i);
+                                            String seller = basement.getString("seller");
 
-                                            ArrayList<String> listdetails = new ArrayList<>();
-                                            listdetails.add("name: "+name);
-                                            listdetails.add("address: "+address);
 
-                                            listDataChild.put(locationNo, listdetails);
+                                            if (Integer.parseInt(seller) == Integer.parseInt(idUser)) {
+                                                String id = basement.getString("id");
+                                                String name = basement.getString("name");
+                                                String address = basement.getString("address");
+
+                                                String locationNo = "Location no. " + id;
+                                                listDataHeader.add(locationNo);
+
+                                                ArrayList<String> listdetails = new ArrayList<>();
+                                                listdetails.add("name: " + name);
+                                                listdetails.add("address: " + address);
+
+                                                listDataChild.put(locationNo, listdetails);
+                                            }
+
                                         }
 
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
                                     }
 
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    customExpandableListView = new CustomExpandableListView(SeeLocations.this, listDataHeader, listDataChild);
+                                    listView.setAdapter(customExpandableListView);
+                                    registerForContextMenu(listView);
                                 }
-
-                                customExpandableListView = new CustomExpandableListView(SeeLocations.this,listDataHeader,listDataChild);
-                                listView.setAdapter(customExpandableListView);
-                                registerForContextMenu(listView);
                             }
-
 
                         }, new Response.ErrorListener() {
                     @Override
@@ -127,7 +127,7 @@ public class SeeLocations extends AppCompatActivity {
 
 
         // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+      //  RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         String url = "http://carsharingap.000webhostapp.com/server/api/basement/delete.php";
 
         HashMap deleteValues = new HashMap();
